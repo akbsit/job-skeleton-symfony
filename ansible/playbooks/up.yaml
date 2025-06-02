@@ -1,0 +1,12 @@
+- name: Up environment
+  hosts: localhost
+  tasks:
+    - name: Include environment vault
+      include_vars:
+        file: ./../vars/{{ env }}.vault.yaml
+    # Generate files
+    - name: Force create .env file
+      template:
+        src: ./../templates/{{ env }}.env
+        dest: ./../../.env
+        force: true
